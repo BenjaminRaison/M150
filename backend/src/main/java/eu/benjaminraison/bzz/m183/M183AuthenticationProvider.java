@@ -3,11 +3,12 @@ package eu.benjaminraison.bzz.m183;
 
 import eu.benjaminraison.bzz.m183.data.IUserRepository;
 import eu.benjaminraison.bzz.m183.data.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -16,20 +17,19 @@ import java.util.ArrayList;
 @Component
 public class M183AuthenticationProvider implements AuthenticationProvider {
 
-    @Autowired
-    private IUserRepository userRepository;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final IUserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+
+
+    public M183AuthenticationProvider(IUserRepository userRepository) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = this.passwordEncoder();
+    }
 
     @Override
     public Authentication authenticate(Authentication authentication)
             throws AuthenticationException {
 
-        User u = new User();
-        u.setEmail("email@email.email");
-        u.setUsername("user1");
-        u.setPassword(passwordEncoder.encode("user1Pass"));
-        userRepository.save(u);
 
         String name = authentication.getName();
         String password = authentication.getCredentials().toString();
@@ -50,4 +50,10 @@ public class M183AuthenticationProvider implements AuthenticationProvider {
     public boolean supports(Class<?> authentication) {
         return authentication.equals(UsernamePasswordAuthenticationToken.class);
     }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
 }
