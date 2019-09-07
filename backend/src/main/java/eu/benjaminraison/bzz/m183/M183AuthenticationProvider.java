@@ -12,8 +12,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-
 @Component
 public class M183AuthenticationProvider implements AuthenticationProvider {
 
@@ -37,7 +35,7 @@ public class M183AuthenticationProvider implements AuthenticationProvider {
         if (user != null) {
             if (passwordEncoder.matches(password, user.getPassword())) {
                 return new UsernamePasswordAuthenticationToken(
-                        name, password, new ArrayList<>());
+                        name, password, user.getRights());
             } else {
                 return null;
             }

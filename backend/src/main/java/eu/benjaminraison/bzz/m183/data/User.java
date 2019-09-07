@@ -2,6 +2,10 @@ package eu.benjaminraison.bzz.m183.data;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class User {
@@ -10,13 +14,20 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @NotBlank
+    @Column(unique = true)
     private String username;
 
     @Email
+    @NotBlank
     private String email;
 
+    @NotBlank
     private String password;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn
+    private List<Right> rights;
 
     public Long getId() {
         return id;
@@ -48,5 +59,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Right> getRights() {
+        return Objects.requireNonNullElseGet(rights, ArrayList::new);
+    }
+
+    public void setRights(List<Right> rights) {
+        this.rights = rights;
     }
 }
