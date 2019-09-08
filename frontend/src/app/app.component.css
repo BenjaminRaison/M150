@@ -1,0 +1,13 @@
+.container {
+  height: calc(100vh - 64px);
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    height: calc(100vh - 56px);
+  }
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
