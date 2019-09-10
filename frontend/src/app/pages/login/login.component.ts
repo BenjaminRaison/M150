@@ -28,6 +28,5 @@ export class LoginComponent implements OnInit {
       username: this.loginFormGroup.value.username,
       password: this.loginFormGroup.value.password
     }).subscribe(value => this.router.navigateByUrl('/'));
-
   }
 }

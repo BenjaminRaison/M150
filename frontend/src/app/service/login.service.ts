@@ -19,7 +19,7 @@ export class LoginService {
     const headers = new HttpHeaders(credentials ? {
       authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password)
     } : {});
-    return this.http.get(`${environment.backendUrl}user`, {headers: headers})
+    return this.http.get(`${environment.backendUrl}/user`, {headers: headers})
       .pipe(map((value: any) => {
         this.authenticationSubject.next({
           username: value.name,
@@ -29,7 +29,11 @@ export class LoginService {
   }
 
   testAuthentication(): Observable<any> {
-    return this.http.get(`${environment.backendUrl}user`)
+    const headers = new HttpHeaders({
+        'X-Requested-With': 'XMLHttpRequest' // suppress the basic auth dialog in browsers
+      }
+    );
+    return this.http.get(`${environment.backendUrl}/user`, {headers: headers})
       .pipe(map((value: any) => {
         this.authenticationSubject.next({
           username: value.name,
