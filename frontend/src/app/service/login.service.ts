@@ -23,7 +23,7 @@ export class LoginService {
       .pipe(map((value: any) => {
         this.authenticationSubject.next({
           username: value.name,
-          roles: [value.authorities[0].right]
+          rights: [value.authorities[0].right]
         });
       }));
   }
@@ -37,7 +37,7 @@ export class LoginService {
       .pipe(map((value: any) => {
         this.authenticationSubject.next({
           username: value.name,
-          roles: [value.authorities[0].right]
+          rights: [value.authorities[0].right]
         });
       }));
   }
@@ -50,5 +50,6 @@ export class Credentials {
 
 export class User {
   username: string;
-  roles: string[]
+  email?: string;
+  rights: string[]
 }

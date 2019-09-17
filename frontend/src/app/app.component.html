@@ -1,15 +1,18 @@
 <mat-toolbar color="primary">
   <span>M183 Forum</span>
   <span class="spacer"></span>
-  <button mat-icon-button *ngIf="(user|async)?.roles[0] === 'ROLE_EDITOR'">
+  <button mat-icon-button *ngIf="(user|async)?.rights[0] === 'ROLE_EDITOR'">
     <mat-icon>edit</mat-icon>
   </button>
-  <button mat-icon-button *ngIf="(user|async)?.roles[0] === 'ROLE_ADMIN'">
+  <button mat-icon-button *ngIf="(user|async)?.rights[0] === 'ROLE_ADMIN'">
     <mat-icon>settings</mat-icon>
   </button>
-  <button mat-icon-button *ngIf="user|async">
+  <button mat-icon-button *ngIf="user|async" [mat-menu-trigger-for]="accountMenu">
     <mat-icon>account_circle</mat-icon>
   </button>
+  <mat-menu #accountMenu="matMenu">
+    <button mat-button (click)="router.navigateByUrl('/users')">Manage Users</button>
+  </mat-menu>
 </mat-toolbar>
 <div class="container">
   <router-outlet></router-outlet>
