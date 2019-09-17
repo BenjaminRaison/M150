@@ -28,7 +28,6 @@ public class M183AuthenticationProvider implements AuthenticationProvider {
     public Authentication authenticate(Authentication authentication)
             throws AuthenticationException {
 
-
         String name = authentication.getName();
         String password = authentication.getCredentials().toString();
         User user = userRepository.findByUsername(name);

@@ -1,5 +1,7 @@
 package eu.benjaminraison.bzz.m183.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -23,10 +25,15 @@ public class User {
     private String email;
 
     @NotBlank
+    @JsonIgnore
     private String password;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_rights",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "right_id")
+    )
     private List<Right> rights;
 
     public Long getId() {
