@@ -3,6 +3,7 @@ import {MatTableDataSource} from "@angular/material/table";
 import {User} from "../../service/login.service";
 import {UserService} from "../../service/user.service";
 import {MatSort} from "@angular/material/sort";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-list',
@@ -16,7 +17,7 @@ export class UserListComponent implements OnInit {
   displayedColumns: string[] = ['username', 'email', 'rights'];
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router) {
   }
 
   ngOnInit() {
@@ -24,6 +25,8 @@ export class UserListComponent implements OnInit {
     this.userService.getAllUsers().subscribe(value => {
       this.users = value;
       this.dataSource.data = this.users;
+    }, error => {
+      this.router.navigateByUrl('/home');
     });
   }
 }

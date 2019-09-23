@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
     username: this.usernameFormControl,
     password: this.passwordFormControl
   });
+  formSubmitted: boolean = false;
 
   constructor(private loginService: LoginService, private router: Router) { }
 
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
   }
 
   doLogin() {
+    this.formSubmitted = true;
     this.loginService.authenticate({
       username: this.loginFormGroup.value.username,
       password: this.loginFormGroup.value.password
