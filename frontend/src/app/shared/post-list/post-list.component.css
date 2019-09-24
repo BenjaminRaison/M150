@@ -1,0 +1,9 @@
+mat-card {
+  max-width: 800px;
+  margin: 5px auto;
+  cursor: pointer;
+}
+
+mat-card:first-of-type {
+  margin-top: 15px;
+}

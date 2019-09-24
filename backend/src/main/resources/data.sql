@@ -14,3 +14,6 @@ insert into user_rights(user_id, right_id) values
 (2,2),
 (2,3),
 (3,3);
+
+insert into post(id, title, author_id, content, uploaded) values
+(1, 'Hello World', 2, 'This is a hello world post with not a lot of content that must be over 60 chars or so to test if the diareses actually works', now());

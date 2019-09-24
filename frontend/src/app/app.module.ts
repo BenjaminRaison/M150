@@ -19,12 +19,16 @@ import {UserListComponent} from './pages/user-list/user-list.component';
 import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {PostListComponent} from './shared/post-list/post-list.component';
+import {HomeComponent} from './pages/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    UserListComponent
+    UserListComponent,
+    PostListComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

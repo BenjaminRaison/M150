@@ -1,11 +1,16 @@
 package eu.benjaminraison.bzz.m183.data;
 
+import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
+import java.time.LocalDateTime;
 
 @Entity
+@Data
 public class Post {
 
     @Id
@@ -23,35 +28,8 @@ public class Post {
     @Length(max = 2500)
     private String content;
 
-    public Long getId() {
-        return id;
-    }
+    @NotNull
+    @PastOrPresent
+    private LocalDateTime uploaded;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public User getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(User author) {
-        this.author = author;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
 }
