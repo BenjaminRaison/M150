@@ -19,10 +19,13 @@ export class PostService {
     );
   }
 
-  createPost(post: Post) {
+  createPost(post: Post): Observable<any> {
     return this.http.post(environment.backendUrl + '/posts', post);
   }
 
+  getPostById(id: number): Observable<Post> {
+    return this.http.get<Post>(`${environment.backendUrl}/posts/${id}`);
+  }
 }
 
 export interface Post {

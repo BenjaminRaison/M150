@@ -19,6 +19,6 @@ export class PostListComponent implements OnInit {
   }
 
   openPost(id: number) {
-    this.router.navigateByUrl(`/posts/${id}`)
+    this.router.navigateByUrl(`/post/${id}`)
   }
 }

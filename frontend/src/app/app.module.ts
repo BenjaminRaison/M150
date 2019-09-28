@@ -21,6 +21,7 @@ import {MatSortModule} from "@angular/material/sort";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {PostListComponent} from './shared/post-list/post-list.component';
 import {HomeComponent} from './pages/home/home.component';
+import {PostComponent} from './pages/post/post.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {HomeComponent} from './pages/home/home.component';
     LoginComponent,
     UserListComponent,
     PostListComponent,
-    HomeComponent
+    HomeComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
