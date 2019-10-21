@@ -18,4 +18,8 @@ export class UserService {
       map((value: any) => value._embedded.users)
     );
   }
+
+  getUserByUrl(url: string): Observable<User> {
+    return this.http.get<User>(url);
+  }
 }

@@ -4,13 +4,14 @@ import {User} from "./login.service";
 import {environment} from "../../environments/environment";
 import {map} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
+import {UserService} from "./user.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private userService: UserService) {
   }
 
   getAllPosts(): Observable<Post[]> {
@@ -24,7 +25,12 @@ export class PostService {
   }
 
   getPostById(id: number): Observable<Post> {
-    return this.http.get<Post>(`${environment.backendUrl}/posts/${id}`);
+    return this.http.get<Post>(`${environment.backendUrl}/posts/${id}`).pipe(
+      map(post => {
+        this.userService.getUserByUrl(post._links.author.href).subscribe(author => post.author = author);
+        return post
+      })
+    );
   }
 }
 
@@ -34,4 +40,9 @@ export interface Post {
   author: User;
   content: string;
   uploaded: Date;
+  _links: {
+    author: {
+      href: string;
+    }
+  }
 }
