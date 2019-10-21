@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable} from "rxjs";
 import {Post, PostService} from "../../service/post.service";
 import {ActivatedRoute, Router} from "@angular/router";
 
@@ -10,7 +9,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class PostComponent implements OnInit {
 
-  post: Observable<Post>;
+  post: Post;
 
   constructor(private postService: PostService, private route: ActivatedRoute, private router: Router) {
   }
@@ -18,7 +17,9 @@ export class PostComponent implements OnInit {
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.post = this.postService.getPostById(Number(id));
+      this.postService.getPostById(Number(id)).subscribe(
+        value => this.post = value
+      );
     } else {
       this.router.navigateByUrl('/home');
     }

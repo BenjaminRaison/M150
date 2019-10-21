@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>{{(post|async)?.title}}</h1>
-  <p class="author-date">{{(post|async)?.author?.username}} - {{(post|async)?.uploaded | date}}</p>
-  <p>{{(post|async)?.content}}</p>
+  <h1>{{post?.title}}</h1>
+  <p class="author-date">{{post?.author?.username}} - {{post?.uploaded | date}}</p>
+  <p>{{post?.content}}</p>
 </div>
