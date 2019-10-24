@@ -1,10 +1,11 @@
 <mat-toolbar color="primary">
   <span>M183 Forum</span>
   <span class="spacer"></span>
-  <button mat-icon-button *ngIf="(user|async)?.rights[0] === 'ROLE_EDITOR'">
+  <button mat-icon-button *ngIf="(user|async)?.rights[0].right === 'ROLE_EDITOR'"
+          (click)="router.navigateByUrl('/post/create')">
     <mat-icon>edit</mat-icon>
   </button>
-  <button mat-icon-button *ngIf="(user|async)?.rights[0] === 'ROLE_ADMIN'">
+  <button mat-icon-button *ngIf="(user|async)?.rights[0].right === 'ROLE_ADMIN'">
     <mat-icon>settings</mat-icon>
   </button>
   <button mat-icon-button *ngIf="user|async" [mat-menu-trigger-for]="accountMenu">

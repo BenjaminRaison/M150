@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
-import {User} from "./login.service";
+import {LoginService, User} from "./login.service";
 import {environment} from "../../environments/environment";
 import {map} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
@@ -11,7 +11,7 @@ import {UserService} from "./user.service";
 })
 export class PostService {
 
-  constructor(private http: HttpClient, private userService: UserService) {
+  constructor(private http: HttpClient, private userService: UserService, private loginService: LoginService) {
   }
 
   getAllPosts(): Observable<Post[]> {
@@ -21,7 +21,13 @@ export class PostService {
   }
 
   createPost(post: Post): Observable<any> {
-    return this.http.post(environment.backendUrl + '/posts', post);
+    const post1: any = post;
+    post1.author = this.loginService.authenticationSubject.getValue()._links.self.href;
+    return this.http.post<Post>(environment.backendUrl + '/posts', post1);
+  }
+
+  updatePost(post: Post) {
+    return this.http.put(environment.backendUrl + `/posts/${post.id}`, post);
   }
 
   getPostById(id: number): Observable<Post> {
@@ -37,10 +43,10 @@ export class PostService {
 export interface Post {
   id?: number;
   title: string;
-  author: User;
+  author?: User;
   content: string;
-  uploaded: Date;
-  _links: {
+  uploaded?: Date;
+  _links?: {
     author: {
       href: string;
     }

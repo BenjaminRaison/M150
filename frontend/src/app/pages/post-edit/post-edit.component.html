@@ -1,0 +1,37 @@
+<div class="wrapper">
+  <mat-card>
+    <mat-card-title *ngIf="!id">Create post</mat-card-title>
+    <mat-card-title *ngIf="id">Edit post</mat-card-title>
+
+    <form [formGroup]="formGroup" (ngSubmit)="savePost()">
+      <mat-card-content>
+        <mat-form-field>
+          <label>
+            <input matInput label="Title" placeholder="Title" [formControl]="titleFormControl"/>
+          </label>
+          <mat-error
+            *ngIf="titleFormControl.invalid && titleFormControl.hasError('required')">
+            You must set a title
+          </mat-error>
+          <mat-error
+            *ngIf="titleFormControl.invalid && titleFormControl.hasError('maxlength')">
+            The title must be less than 80 characters
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <label>
+            <input matInput label="Content" placeholder="Content" [formControl]="contentFormControl"/>
+          </label>
+          <mat-error
+            *ngIf="contentFormControl.invalid && contentFormControl.hasError('required')">
+            You might want to add some content
+          </mat-error>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <mat-spinner diameter="36" *ngIf="isInProgress"></mat-spinner>
+        <button mat-raised-button color="primary" [disabled]="formGroup.invalid || isInProgress">Save</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>

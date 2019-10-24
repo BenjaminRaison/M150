@@ -12,7 +12,7 @@ import {MatCardModule} from "@angular/material/card";
 import {MatTabsModule} from "@angular/material/tabs";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
 import {UserListComponent} from './pages/user-list/user-list.component';
@@ -22,6 +22,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {PostListComponent} from './shared/post-list/post-list.component';
 import {HomeComponent} from './pages/home/home.component';
 import {PostComponent} from './pages/post/post.component';
+import {PostEditComponent} from './pages/post-edit/post-edit.component';
+import {CsrfInterceptor} from "./service/csrf.interceptor";
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import {PostComponent} from './pages/post/post.component';
     UserListComponent,
     PostListComponent,
     HomeComponent,
-    PostComponent
+    PostComponent,
+    PostEditComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,7 @@ import {PostComponent} from './pages/post/post.component';
     MatSortModule,
     MatProgressSpinnerModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: CsrfInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

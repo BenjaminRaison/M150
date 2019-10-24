@@ -1,0 +1,16 @@
+mat-card {
+  max-width: 650px;
+  margin: 25px auto 0;
+}
+
+.wrapper {
+  height: 100%;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-spinner {
+  margin-right: 5px;
+}

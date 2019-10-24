@@ -22,4 +22,8 @@ export class UserService {
   getUserByUrl(url: string): Observable<User> {
     return this.http.get<User>(url);
   }
+
+  getUserByUsername(name: string): Observable<User> {
+    return this.http.get<User>(`${environment.backendUrl}/users/search/findByUsername?username=${name}`);
+  }
 }

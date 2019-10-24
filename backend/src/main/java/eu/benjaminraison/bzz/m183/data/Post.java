@@ -21,7 +21,7 @@ public class Post {
     @Length(max = 80)
     private String title;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     private User author;
 
     @NotBlank
@@ -30,6 +30,6 @@ public class Post {
 
     @NotNull
     @PastOrPresent
-    private LocalDateTime uploaded;
+    private LocalDateTime uploaded = LocalDateTime.now();
 
 }

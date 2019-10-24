@@ -1,11 +1,12 @@
 package eu.benjaminraison.bzz.m183.data;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.access.annotation.Secured;
 
 public interface IUserRepository extends CrudRepository<User, Long> {
 
-    User findByUsername(String username);
+    User findByUsername(@Param("username") String username);
 
     @Override
     @Secured({"ROLE_ADMIN"})

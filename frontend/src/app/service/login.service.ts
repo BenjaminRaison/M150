@@ -2,7 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {BehaviorSubject, Observable} from "rxjs";
-import {map} from "rxjs/operators";
+import {map, switchMap} from "rxjs/operators";
+import {UserService} from "./user.service";
 
 
 @Injectable({
@@ -12,19 +13,24 @@ export class LoginService {
 
   authenticationSubject: BehaviorSubject<User> = new BehaviorSubject<User>(null);
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private userService: UserService) {
   }
 
   authenticate(credentials: Credentials): Observable<any> {
     const headers = new HttpHeaders(credentials ? {
       authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password)
     } : {});
+    return this.doLoginRequest(headers);
+  }
+
+  private doLoginRequest(headers: HttpHeaders): Observable<any> {
     return this.http.get(`${environment.backendUrl}/user`, {headers: headers})
-      .pipe(map((value: any) => {
-        this.authenticationSubject.next({
-          username: value.name,
-          rights: [value.authorities[0].right]
-        });
+      .pipe(switchMap((value: any) => {
+        return this.userService.getUserByUsername(value.name).pipe(
+          map(user => {
+              this.authenticationSubject.next(user);
+            }
+          ));
       }));
   }
 
@@ -33,13 +39,7 @@ export class LoginService {
         'X-Requested-With': 'XMLHttpRequest' // suppress the basic auth dialog in browsers
       }
     );
-    return this.http.get(`${environment.backendUrl}/user`, {headers: headers})
-      .pipe(map((value: any) => {
-        this.authenticationSubject.next({
-          username: value.name,
-          rights: [value.authorities[0].right]
-        });
-      }));
+    return this.doLoginRequest(headers);
   }
 }
 
@@ -51,5 +51,13 @@ export class Credentials {
 export class User {
   username: string;
   email?: string;
-  rights: string[]
+  rights: {
+    right: string;
+    authority: string;
+  }[];
+  _links?: {
+    self?: {
+      href: string;
+    }
+  }
 }

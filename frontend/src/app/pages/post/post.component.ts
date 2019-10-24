@@ -16,13 +16,13 @@ export class PostComponent implements OnInit {
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
+    if (id && !isNaN(Number(id))) {
       this.postService.getPostById(Number(id)).subscribe(
-        value => this.post = value
+        value => this.post = value,
+        error => this.router.navigateByUrl('/home')
       );
     } else {
       this.router.navigateByUrl('/home');
     }
   }
-
 }
