@@ -19,10 +19,24 @@ export class PostEditComponent implements OnInit {
 
   private post: Post = {title: null, content: null, id: null};
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private postService: PostService) {
+  constructor(private router: Router, private route: ActivatedRoute, private postService: PostService) {
   }
 
   ngOnInit() {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id && !isNaN(Number(id))) {
+      this.id = Number(id);
+      this.postService.getPostById(Number(id)).subscribe(
+        value => {
+          this.post = value;
+          this.titleFormControl.setValue(value.title);
+          this.contentFormControl.setValue(value.content);
+        },
+        error => this.router.navigateByUrl('/home')
+      );
+    } else if (id && isNaN(Number(id))) {
+      this.router.navigateByUrl('/home');
+    }
   }
 
   savePost() {
