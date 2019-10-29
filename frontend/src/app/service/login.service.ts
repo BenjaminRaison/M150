@@ -23,6 +23,10 @@ export class LoginService {
     return this.doLoginRequest(headers);
   }
 
+  testAuthentication(): Observable<any> {
+    return this.doLoginRequest(new HttpHeaders({}));
+  }
+
   private doLoginRequest(headers: HttpHeaders): Observable<any> {
     headers = headers.append('X-Requested-With', 'XMLHttpRequest');
     console.info(headers);
@@ -34,10 +38,6 @@ export class LoginService {
             }
           ));
       }));
-  }
-
-  testAuthentication(): Observable<any> {
-    return this.doLoginRequest(new HttpHeaders({}));
   }
 }
 

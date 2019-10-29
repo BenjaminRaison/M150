@@ -12,10 +12,10 @@ import {Router} from "@angular/router";
 })
 export class UserListComponent implements OnInit {
 
-  private users: User[] = [];
-  dataSource: MatTableDataSource<User> = new MatTableDataSource<User>(this.users);
   displayedColumns: string[] = ['username', 'email', 'rights'];
   @ViewChild(MatSort, {static: true}) sort: MatSort;
+  private users: User[] = [];
+  dataSource: MatTableDataSource<User> = new MatTableDataSource<User>(this.users);
 
   constructor(private userService: UserService, private router: Router) {
   }
@@ -25,7 +25,7 @@ export class UserListComponent implements OnInit {
     this.userService.getAllUsers().subscribe(value => {
       this.users = value;
       this.dataSource.data = this.users;
-    }, error => {
+    }, () => {
       this.router.navigateByUrl('/home');
     });
   }

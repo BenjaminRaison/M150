@@ -57,4 +57,5 @@ import {CsrfInterceptor} from "./service/csrf.interceptor";
   providers: [{provide: HTTP_INTERCEPTORS, useClass: CsrfInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

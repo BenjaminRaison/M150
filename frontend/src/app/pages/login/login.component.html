@@ -3,18 +3,18 @@
     <mat-card-title>
       Login
     </mat-card-title>
-    <form [formGroup]="loginFormGroup" (ngSubmit)="doLogin()">
+    <form (ngSubmit)="doLogin()" [formGroup]="loginFormGroup">
       <mat-card-content>
         <mat-form-field>
           <label>
-            <input matInput
-                   placeholder="Username"
-                   label="Username"
-                   type="text"
-                   name="username"
+            <input [formControl]="usernameFormControl"
                    autocomplete="username"
-                   [formControl]="usernameFormControl"
-                   required/>
+                   label="Username"
+                   matInput
+                   name="username"
+                   placeholder="Username"
+                   required
+                   type="text"/>
           </label>
           <mat-error *ngIf="usernameFormControl.invalid && usernameFormControl.hasError('required')">You must enter your
             username
@@ -22,14 +22,14 @@
         </mat-form-field>
         <mat-form-field>
           <label>
-            <input matInput
-                   placeholder="Password"
-                   label="Password"
-                   type="password"
-                   name="password"
+            <input [formControl]="passwordFormControl"
                    autocomplete="current-password"
-                   [formControl]="passwordFormControl"
-                   required/>
+                   label="Password"
+                   matInput
+                   name="password"
+                   placeholder="Password"
+                   required
+                   type="password"/>
           </label>
           <mat-error *ngIf="passwordFormControl.invalid && passwordFormControl.hasError('required')">You must enter your
             password
@@ -38,8 +38,8 @@
       </mat-card-content>
       <mat-card-actions align="end">
         <span *ngIf="errorMessage" class="error">{{errorMessage}}</span>
-        <mat-spinner diameter="36" *ngIf="formSubmitted"></mat-spinner>
-        <button mat-stroked-button [disabled]="loginFormGroup.invalid || formSubmitted">Login</button>
+        <mat-spinner *ngIf="formSubmitted" diameter="36"></mat-spinner>
+        <button [disabled]="loginFormGroup.invalid || formSubmitted" mat-stroked-button>Login</button>
       </mat-card-actions>
     </form>
   </mat-card>

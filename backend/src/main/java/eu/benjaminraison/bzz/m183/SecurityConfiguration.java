@@ -44,7 +44,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private AuthenticationEntryPoint getAuthenticationEntryPoint() {
         return (request, response, authException) -> {
             String requestedBy = request.getHeader("X-Requested-With");
-            System.out.println("X-Requested-With: " + requestedBy);
             if (requestedBy == null || requestedBy.isEmpty()) {
                 response.setHeader("WWW-Authenticate", "Basic realm=M183");
                 response.sendError(HttpServletResponse.SC_UNAUTHORIZED, authException.getMessage());

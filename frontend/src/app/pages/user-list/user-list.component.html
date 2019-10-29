@@ -1,18 +1,18 @@
-<table mat-table matSort [dataSource]="dataSource">
+<table [dataSource]="dataSource" mat-table matSort>
   <ng-container matColumnDef="username">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Username</th>
-    <td mat-cell *matCellDef="let element">{{element.username}}</td>
+    <th *matHeaderCellDef mat-header-cell mat-sort-header>Username</th>
+    <td *matCellDef="let element" mat-cell>{{element.username}}</td>
   </ng-container>
   <ng-container matColumnDef="email">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>E-Mail</th>
-    <td mat-cell *matCellDef="let element">{{element.email}}</td>
+    <th *matHeaderCellDef mat-header-cell mat-sort-header>E-Mail</th>
+    <td *matCellDef="let element" mat-cell>{{element.email}}</td>
   </ng-container>
   <ng-container matColumnDef="rights">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Roles</th>
-    <td mat-cell *matCellDef="let element">
+    <th *matHeaderCellDef mat-header-cell mat-sort-header>Roles</th>
+    <td *matCellDef="let element" mat-cell>
       <span *ngFor="let right of element.rights">{{right.right}}<br/></span>
     </td>
   </ng-container>
-  <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>
+  <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
 </table>

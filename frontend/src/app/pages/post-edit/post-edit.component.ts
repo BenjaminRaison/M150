@@ -32,7 +32,7 @@ export class PostEditComponent implements OnInit {
           this.titleFormControl.setValue(value.title);
           this.contentFormControl.setValue(value.content);
         },
-        error => this.router.navigateByUrl('/home')
+        () => this.router.navigateByUrl('/home')
       );
     } else if (id && isNaN(Number(id))) {
       this.router.navigateByUrl('/home');

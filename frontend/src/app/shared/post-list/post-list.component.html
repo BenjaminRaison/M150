@@ -1,4 +1,4 @@
-<mat-card *ngFor="let post of posts" (click)="openPost(post.id)">
+<mat-card (click)="openPost(post.id)" *ngFor="let post of posts">
   <mat-card-title>{{post.title}}</mat-card-title>
   <mat-card-content>
     <i *ngIf="post?.author?.username">by {{post.author.username}}</i>
