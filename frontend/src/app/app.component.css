@@ -11,3 +11,7 @@
 .spacer {
   flex: 1 1 auto;
 }
+
+mat-toolbar span:first-of-type {
+  cursor: pointer;
+}

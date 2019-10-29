@@ -1,17 +1,17 @@
 <mat-toolbar color="primary">
-  <span>M183 Forum</span>
+  <span [routerLink]="'/home'">M183 Forum</span>
   <span class="spacer"></span>
-  <button (click)="router.navigateByUrl('/post/create')" *ngIf="(user|async)?.rights[0].right === 'ROLE_EDITOR'" mat-icon-button>
+  <button [routerLink]="'/post/create'" *ngIf="(user|async)?.rights[0].right === 'ROLE_EDITOR'" mat-icon-button>
     <mat-icon>edit</mat-icon>
   </button>
   <button *ngIf="(user|async)?.rights[0].right === 'ROLE_ADMIN'" mat-icon-button>
     <mat-icon>settings</mat-icon>
   </button>
-  <button *ngIf="user|async" [mat-menu-trigger-for]="accountMenu" mat-icon-button>
+  <button *ngIf="(user|async)?.rights[0].right === 'ROLE_ADMIN'" [mat-menu-trigger-for]="accountMenu" mat-icon-button>
     <mat-icon>account_circle</mat-icon>
   </button>
   <mat-menu #accountMenu="matMenu">
-    <button (click)="router.navigateByUrl('/users')" mat-button>Manage Users</button>
+    <button [routerLink]="'/users'" mat-button>Manage Users</button>
   </mat-menu>
 </mat-toolbar>
 <div class="container">
