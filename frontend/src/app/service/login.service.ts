@@ -29,7 +29,6 @@ export class LoginService {
 
   private doLoginRequest(headers: HttpHeaders): Observable<any> {
     headers = headers.append('X-Requested-With', 'XMLHttpRequest');
-    console.info(headers);
     return this.http.get(`${environment.backendUrl}/user`, {headers: headers})
       .pipe(switchMap((value: any) => {
         return this.userService.getUserByUsername(value.name).pipe(

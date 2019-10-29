@@ -31,10 +31,8 @@ export class PostService {
   }
 
   getPostById(id: number): Observable<Post> {
-    console.info('called');
     return this.http.get<Post>(`${environment.backendUrl}/posts/${id}`).pipe(
       map(post => {
-        console.info('got');
         this.userService.getUserByUrl(post._links.author.href).subscribe(author => post.author = author);
         return post
       })

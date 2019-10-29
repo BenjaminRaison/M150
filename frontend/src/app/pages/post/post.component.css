@@ -8,3 +8,7 @@
 .author-date {
   color: gray;
 }
+
+.content {
+  white-space: pre-wrap;
+}

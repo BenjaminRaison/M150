@@ -11,10 +11,11 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
+@SequenceGenerator(name = "seq", initialValue = 5)
 public class Post {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     private Long id;
 
     @NotBlank
@@ -25,8 +26,11 @@ public class Post {
     private User author;
 
     @NotBlank
-    @Length(max = 2500)
+    @Length(max = 15000)
     private String content;
+
+    @ManyToOne
+    private Category category;
 
     @NotNull
     @PastOrPresent
