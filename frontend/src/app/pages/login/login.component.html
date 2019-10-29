@@ -37,6 +37,7 @@
         </mat-form-field>
       </mat-card-content>
       <mat-card-actions align="end">
+        <span *ngIf="errorMessage" class="error">{{errorMessage}}</span>
         <mat-spinner diameter="36" *ngIf="formSubmitted"></mat-spinner>
         <button mat-stroked-button [disabled]="loginFormGroup.invalid || formSubmitted">Login</button>
       </mat-card-actions>

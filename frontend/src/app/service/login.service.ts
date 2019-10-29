@@ -18,12 +18,14 @@ export class LoginService {
 
   authenticate(credentials: Credentials): Observable<any> {
     const headers = new HttpHeaders(credentials ? {
-      authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password)
+      authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password),
     } : {});
     return this.doLoginRequest(headers);
   }
 
   private doLoginRequest(headers: HttpHeaders): Observable<any> {
+    headers = headers.append('X-Requested-With', 'XMLHttpRequest');
+    console.info(headers);
     return this.http.get(`${environment.backendUrl}/user`, {headers: headers})
       .pipe(switchMap((value: any) => {
         return this.userService.getUserByUsername(value.name).pipe(
@@ -35,11 +37,7 @@ export class LoginService {
   }
 
   testAuthentication(): Observable<any> {
-    const headers = new HttpHeaders({
-        'X-Requested-With': 'XMLHttpRequest' // suppress the basic auth dialog in browsers
-      }
-    );
-    return this.doLoginRequest(headers);
+    return this.doLoginRequest(new HttpHeaders({}));
   }
 }
 

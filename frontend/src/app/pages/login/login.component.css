@@ -14,3 +14,8 @@ mat-form-field {
 mat-spinner {
   margin-right: 5px;
 }
+
+.error {
+  color: red;
+  margin: auto 5px;
+}

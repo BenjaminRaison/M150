@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
     password: this.passwordFormControl
   });
   formSubmitted: boolean = false;
+  errorMessage: string = '';
 
   constructor(private loginService: LoginService, private router: Router) { }
 
@@ -29,6 +30,16 @@ export class LoginComponent implements OnInit {
     this.loginService.authenticate({
       username: this.loginFormGroup.value.username,
       password: this.loginFormGroup.value.password
-    }).subscribe(value => this.router.navigateByUrl('/'));
+    }).subscribe(
+      value => this.router.navigateByUrl('/'),
+      error => {
+        this.formSubmitted = false;
+        if (error.status === 401) {
+          this.errorMessage = 'Invalid username/password'
+        } else {
+          this.errorMessage = 'Login failed. Please try again later'
+        }
+      }
+    );
   }
 }
