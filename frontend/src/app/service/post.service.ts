@@ -5,7 +5,7 @@ import {environment} from "../../environments/environment";
 import {map} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
 import {UserService} from "./user.service";
-import {CategoryService} from "./category.service";
+import {Category, CategoryService} from "./category.service";
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +24,8 @@ export class PostService {
   createPost(post: Post): Observable<any> {
     const post1: any = post;
     post1.author = this.loginService.authenticationSubject.getValue()._links.self.href;
+    post1.category = post.category._links.self.href;
+    console.info(post1);
     return this.http.post<Post>(environment.backendUrl + '/posts', post1);
   }
 
@@ -35,7 +37,7 @@ export class PostService {
     return this.http.get<Post>(`${environment.backendUrl}/posts/${id}`).pipe(
       map(post => {
         this.userService.getUserByUrl(post._links.author.href).subscribe(author => post.author = author);
-        this.categoryService.getCategoryByUrl(post._links.category.href).subscribe(category => post.category = category.name);
+        this.categoryService.getCategoryByUrl(post._links.category.href).subscribe(category => post.category = category);
         return post
       })
     );
@@ -45,7 +47,7 @@ export class PostService {
 export interface Post {
   id?: number;
   title: string;
-  category?: string;
+  category?: Category;
   author?: User;
   content: string;
   uploaded?: Date;

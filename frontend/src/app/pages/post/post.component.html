@@ -1,5 +1,5 @@
 <div class="container">
   <h1>{{post?.title}}</h1>
-  <p class="author-date">{{post?.author?.username}} - {{post?.category}} - {{post?.uploaded | date}}</p>
+  <p class="author-date">{{post?.author?.username}} - {{post?.category?.name}} - {{post?.uploaded | date}}</p>
   <p class="content">{{post?.content}}</p>
 </div>

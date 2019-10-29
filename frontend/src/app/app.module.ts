@@ -24,6 +24,7 @@ import {HomeComponent} from './pages/home/home.component';
 import {PostComponent} from './pages/post/post.component';
 import {PostEditComponent} from './pages/post-edit/post-edit.component';
 import {CsrfInterceptor} from "./service/csrf.interceptor";
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import {CsrfInterceptor} from "./service/csrf.interceptor";
     MatMenuModule,
     MatTableModule,
     MatSortModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSelectModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: CsrfInterceptor, multi: true}],
   bootstrap: [AppComponent]
