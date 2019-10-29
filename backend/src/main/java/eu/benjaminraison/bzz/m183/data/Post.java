@@ -22,6 +22,7 @@ public class Post {
     @Length(max = 80)
     private String title;
 
+    @NotNull
     @ManyToOne
     private User author;
 
@@ -29,6 +30,7 @@ public class Post {
     @Length(max = 15000)
     private String content;
 
+    @NotNull
     @ManyToOne
     private Category category;
 

@@ -25,7 +25,6 @@ export class PostService {
     const post1: any = post;
     post1.author = this.loginService.authenticationSubject.getValue()._links.self.href;
     post1.category = post.category._links.self.href;
-    console.info(post1);
     return this.http.post<Post>(environment.backendUrl + '/posts', post1);
   }
 
