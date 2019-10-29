@@ -2,6 +2,8 @@
   <mat-card-title>{{post.title}}</mat-card-title>
   <mat-card-content>
     <i *ngIf="post?.author?.username">by {{post.author.username}}</i>
+    <span class="content">
     {{ (post.content.length > 150) ? (post.content | slice:0:150) + '…' : (post.content) }}
+    </span>
   </mat-card-content>
 </mat-card>

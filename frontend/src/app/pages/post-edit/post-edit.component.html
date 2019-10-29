@@ -20,7 +20,7 @@
         </mat-form-field>
         <mat-form-field>
           <label>
-            <input [formControl]="contentFormControl" label="Content" matInput placeholder="Content"/>
+            <textarea [formControl]="contentFormControl" rows="5" label="Content" matInput placeholder="Content"></textarea>
           </label>
           <mat-error
             *ngIf="contentFormControl.invalid && contentFormControl.hasError('required')">

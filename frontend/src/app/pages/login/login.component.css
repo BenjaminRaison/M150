@@ -16,6 +16,6 @@ mat-spinner {
 }
 
 .error {
-  color: red;
+  color: #c2185b;
   margin: auto 5px;
 }
