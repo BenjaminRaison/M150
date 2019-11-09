@@ -6,6 +6,8 @@ import org.springframework.security.access.annotation.Secured;
 
 public interface IUserRepository extends CrudRepository<User, Long> {
 
+    // FIXME: Can't be @Securerd because login wouldn't work. Should find a better way to do this in production to prevent enumeration attacks
+    // Maybe not exported?
     User findByUsername(@Param("username") String username);
 
     @Override

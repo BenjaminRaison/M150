@@ -1,0 +1,4 @@
+*.log
+tomcat/
+*.jar
+node_modules/
