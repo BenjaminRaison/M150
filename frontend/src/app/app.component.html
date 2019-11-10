@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-  <span [routerLink]="'/home'">M183 Forum</span>
+  <span [routerLink]="'/home'">M183 Blog</span>
   <span class="spacer"></span>
   <button [routerLink]="'/post/create'" *ngIf="(user|async)?.rights[0].right === 'ROLE_EDITOR'" mat-icon-button>
     <mat-icon>edit</mat-icon>
