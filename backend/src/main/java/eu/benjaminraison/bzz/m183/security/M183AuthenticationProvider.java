@@ -1,4 +1,4 @@
-package eu.benjaminraison.bzz.m183;
+package eu.benjaminraison.bzz.m183.security;
 
 
 import eu.benjaminraison.bzz.m183.data.IUserRepository;
