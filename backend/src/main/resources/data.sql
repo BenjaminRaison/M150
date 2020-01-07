@@ -4,9 +4,9 @@ insert into right (id, right) values
 (3, 'ROLE_USER');
 
 insert into user (id, username, email, password) values
-(1, 'admin', 'admin@m183.local', '$2a$10$LD46dZLQoaMu5pHH2uKTHODjg..Q9r2lVow4wwLrDOWHQtfIypAKS'), -- adminpassword
-(2, 'editor', 'editor@m183.local', '$2a$10$B/u5qJNFLCA3B59UtqPTNurosYa.WGLt5AQgL5OuflOz97aA6OhsC'), -- editorpassword
-(3, 'user', 'user@m183.local', '$2a$10$KPH0eLpLydDab6SUFrknKuMZ47r5sNHQOzzg7xCY0HP1cxoO9.tZC'); -- userpassword
+(1, 'admin', 'admin@m150.local', '$2a$10$LD46dZLQoaMu5pHH2uKTHODjg..Q9r2lVow4wwLrDOWHQtfIypAKS'), -- adminpassword
+(2, 'editor', 'editor@m150.local', '$2a$10$B/u5qJNFLCA3B59UtqPTNurosYa.WGLt5AQgL5OuflOz97aA6OhsC'), -- editorpassword
+(3, 'user', 'user@m150.local', '$2a$10$KPH0eLpLydDab6SUFrknKuMZ47r5sNHQOzzg7xCY0HP1cxoO9.tZC'); -- userpassword
 
 insert into user_rights(user_id, right_id) values
 (1,1),

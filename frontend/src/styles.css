@@ -4,3 +4,9 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
+/* Override mat-expansion-panel for comments */
+.mat-expansion-panel-body {
+  padding-right: 0 !important;
+  background-color: #585858 !important;
+}

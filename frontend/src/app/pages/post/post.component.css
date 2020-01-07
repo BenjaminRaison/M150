@@ -5,10 +5,18 @@
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.comments {
+  margin-top: 25px;
+}
+
 .author-date {
   color: gray;
 }
 
 .content {
   white-space: pre-wrap;
+}
+
+.comment {
+  margin-bottom: 25px;
 }

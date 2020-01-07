@@ -26,6 +26,8 @@ import {PostEditComponent} from './pages/post-edit/post-edit.component';
 import {CsrfInterceptor} from "./service/csrf.interceptor";
 import {MatSelectModule} from "@angular/material/select";
 import {BasicInterceptor} from "./service/basic.interceptor";
+import {CommentComponent} from './shared/comment/comment.component';
+import {MatExpansionModule} from "@angular/material/expansion";
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import {BasicInterceptor} from "./service/basic.interceptor";
     PostListComponent,
     HomeComponent,
     PostComponent,
-    PostEditComponent
+    PostEditComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +58,8 @@ import {BasicInterceptor} from "./service/basic.interceptor";
     MatTableModule,
     MatSortModule,
     MatProgressSpinnerModule,
-    MatSelectModule
+    MatSelectModule,
+    MatExpansionModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: BasicInterceptor, multi: true},
