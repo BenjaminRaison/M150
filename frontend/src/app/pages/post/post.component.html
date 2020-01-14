@@ -3,9 +3,9 @@
   <p class="author-date">{{post?.author?.username}} - {{post?.category?.name}} - {{post?.uploaded | date}}</p>
   <p class="content">{{post?.content}}</p>
 </div>
-<div class="container comments" *ngIf="comments">
+<div class="container comments" *ngIf="(comments|async)">
   <h2>Comments</h2>
-  <div *ngFor="let comment of comments" class="comment">
+  <div *ngFor="let comment of comments | async" class="comment">
     <app-comment [comment]="comment"></app-comment>
   </div>
 </div>

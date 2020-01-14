@@ -17,14 +17,25 @@ export class CommentService {
 
   getCommentsByPost(id: number): Observable<Comment[]> {
     return this.http.get<Comment[]>(`${environment.backendUrl}/comments/search/getByPost/?postId=${id}`).pipe(
-      map((comments: Comment[]) => {
-        comments.forEach((comment: Comment) => {
-          this.userService.getUserByUrl(comment._links.user).subscribe(user => comment.user = user);
+      map((o: any) => <Comment[]>o._embedded.comments),
+      map((o: Comment[]) => {
+        o.forEach(comment => {
+          comment.user = comment._embedded.user;
+          comment.post = comment._embedded.post;
+          comment._embedded = null;
         });
-        return comments;
+        return o;
       })
     );
   }
+
+  getCommentWithUser(comment: Comment): Observable<Comment> {
+    return this.userService.getUserByUrl(comment._links.user).pipe(map(user => {
+      comment.user = user;
+      return comment;
+    }));
+  }
+
 }
 
 export class Comment {
@@ -36,4 +47,8 @@ export class Comment {
   comment: string;
   timestamp: string;
   _links?: any;
+  _embedded?: {
+    user?: User;
+    post?: Post;
+  };
 }

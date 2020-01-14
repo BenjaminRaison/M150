@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Post, PostService} from "../../service/post.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Comment, CommentService} from "../../service/comment.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-post',
@@ -11,7 +12,7 @@ import {Comment, CommentService} from "../../service/comment.service";
 export class PostComponent implements OnInit {
 
   post: Post;
-  comments: Comment[];
+  comments: Observable<Comment[]>;
 
   constructor(private postService: PostService, private commentService: CommentService, private route: ActivatedRoute, private router: Router) {
   }
@@ -23,10 +24,8 @@ export class PostComponent implements OnInit {
         value => this.post = value,
         () => this.router.navigateByUrl('/home')
       );
-      this.commentService.getCommentsByPost(Number(id)).subscribe(
-        value => this.comments = value,
-        () => this.router.navigateByUrl(('/home'))
-      );
+      this.comments = this.commentService.getCommentsByPost(Number(id));
+
     } else {
       this.router.navigateByUrl('/home');
     }
