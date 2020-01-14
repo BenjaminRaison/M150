@@ -3,6 +3,8 @@ import {Post, PostService} from "../../service/post.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Comment, CommentService} from "../../service/comment.service";
 import {Observable} from "rxjs";
+import {CommentDialogComponent} from "../../shared/comment-dialog/comment-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-post',
@@ -14,7 +16,7 @@ export class PostComponent implements OnInit {
   post: Post;
   comments: Observable<Comment[]>;
 
-  constructor(private postService: PostService, private commentService: CommentService, private route: ActivatedRoute, private router: Router) {
+  constructor(private postService: PostService, private commentService: CommentService, private route: ActivatedRoute, private router: Router, private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -32,6 +34,20 @@ export class PostComponent implements OnInit {
       this.router.navigateByUrl('/home');
     }
   }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(CommentDialogComponent, {
+      width: '400px',
+      data: {parentComment: null, post: this.post}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.loadComments();
+      }
+    });
+  }
+
 
   loadComments() {
     this.comments = this.commentService.getCommentsByPost(this.post.id);

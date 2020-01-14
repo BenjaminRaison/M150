@@ -22,6 +22,29 @@ export class CommentService {
     return this.http.delete(`${environment.backendUrl}/comments/${id}`);
   }
 
+  save(comment: Comment): Observable<any> {
+    const dto = {
+      comment: comment.comment,
+      post: this.toPostUri(comment.post),
+      parent: this.toCommentUri(comment.parent),
+      user: comment.user._links.self.href
+    };
+    return this.http.post(`${environment.backendUrl}/comments`, dto);
+  }
+
+  private toPostUri(post: Post) {
+    if (post) {
+      return `${environment.backendUrl}/posts/${post.id}`
+    }
+    return null;
+  }
+
+  private toCommentUri(comment: Comment) {
+    if (comment) {
+      return `${environment.backendUrl}/comments/${comment.id}`
+    }
+    return null;
+  }
 }
 
 export class Comment {
@@ -31,7 +54,7 @@ export class Comment {
   parent?: Comment;
   children?: Comment[];
   comment: string;
-  timestamp: string;
+  timestamp?: string;
   _links?: any;
   _embedded?: {
     user?: User;

@@ -3,9 +3,13 @@
   <p class="author-date">{{post?.author?.username}} - {{post?.category?.name}} - {{post?.uploaded | date}}</p>
   <p class="content">{{post?.content}}</p>
 </div>
-<div class="container comments" *ngIf="(comments|async)">
-  <h2>Comments</h2>
+<div class="container comments">
+  <h2>Comments
+    <button mat-icon-button (click)="openDialog()">
+      <mat-icon>comment</mat-icon>
+    </button>
+  </h2>
   <div *ngFor="let comment of comments | async" class="comment">
-    <app-comment [comment]="comment" (deleted)="loadComments()"></app-comment>
+    <app-comment [comment]="comment" (reload)="loadComments()"></app-comment>
   </div>
 </div>

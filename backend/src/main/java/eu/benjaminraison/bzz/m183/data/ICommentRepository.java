@@ -35,7 +35,7 @@ public interface ICommentRepository extends CrudRepository<Comment, Long> {
     void deleteById(Long aLong);
 
     @Override
-    @RestResource(exported = false)
+    @Secured({"ROLE_USER"})
     <S extends Comment> S save(S entity);
 
     @Override

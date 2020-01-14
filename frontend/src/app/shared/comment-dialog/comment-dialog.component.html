@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Comment</h1>
+<mat-dialog-content>
+  <mat-form-field style="width: 100%">
+    <label>
+      <textarea matInput [(ngModel)]="comment" placeholder="Comment" cdkFocusInitial></textarea>
+    </label>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button (click)="saveComment()">Comment</button>
+  <button mat-button (click)="cancel()">Cancel</button>
+</mat-dialog-actions>

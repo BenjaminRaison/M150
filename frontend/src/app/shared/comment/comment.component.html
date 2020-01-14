@@ -3,12 +3,15 @@
     <mat-expansion-panel-header>
       <mat-panel-title>{{comment?.user?.username}}</mat-panel-title>
       <mat-panel-description>{{comment?.timestamp | date:'medium'}}</mat-panel-description>
-      <button mat-icon-button class="delete-icon" (click)="deleteComment(comment)" *ngIf="(user|async)?.rights[0].right === 'ROLE_ADMIN'">
+      <button mat-icon-button class="comment-icon-button" (click)="openDialog($event)">
+        <mat-icon>reply</mat-icon>
+      </button>
+      <button mat-icon-button class="comment-icon-button" (click)="deleteComment(comment, $event)" *ngIf="(user|async)?.rights[0].right === 'ROLE_ADMIN'">
         <mat-icon>delete</mat-icon>
       </button>
     </mat-expansion-panel-header>
     <p class="comment">{{comment?.comment}}</p>
-    <app-comment *ngFor="let c of comment?.children" [comment]="c" (deleted)="onDeleted.next()"></app-comment>
+    <app-comment *ngFor="let c of comment?.children" [comment]="c" (reload)="reload.next()"></app-comment>
   </mat-expansion-panel>
 </mat-accordion>
 

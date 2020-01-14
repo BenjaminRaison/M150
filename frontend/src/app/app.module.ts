@@ -28,6 +28,8 @@ import {MatSelectModule} from "@angular/material/select";
 import {BasicInterceptor} from "./service/basic.interceptor";
 import {CommentComponent} from './shared/comment/comment.component';
 import {MatExpansionModule} from "@angular/material/expansion";
+import {CommentDialogComponent} from './shared/comment-dialog/comment-dialog.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import {MatExpansionModule} from "@angular/material/expansion";
     HomeComponent,
     PostComponent,
     PostEditComponent,
-    CommentComponent
+    CommentComponent,
+    CommentDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -59,13 +62,15 @@ import {MatExpansionModule} from "@angular/material/expansion";
     MatSortModule,
     MatProgressSpinnerModule,
     MatSelectModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatDialogModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: BasicInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: CsrfInterceptor, multi: true}
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [CommentDialogComponent]
 })
 export class AppModule {
 }
