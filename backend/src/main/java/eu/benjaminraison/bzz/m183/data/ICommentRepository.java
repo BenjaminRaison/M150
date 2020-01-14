@@ -12,6 +12,8 @@ import java.util.List;
 public interface ICommentRepository extends CrudRepository<Comment, Long> {
 
     @Query("SELECT c from Comment c where c.post.id = :postId")
+    @RestResource(exported = false)
+    @Secured({"ROLE_USER"})
     List<Comment> getByPost(@Param("postId") long postId);
 
     @Override
