@@ -17,6 +17,11 @@ export class CommentService {
   getCommentsByPost(id: number): Observable<Comment[]> {
     return this.http.get<Comment[]>(`${environment.backendUrl}/comments/search/getByPost/?postId=${id}`);
   }
+
+  deleteById(id: number): Observable<any> {
+    return this.http.delete(`${environment.backendUrl}/comments/${id}`);
+  }
+
 }
 
 export class Comment {

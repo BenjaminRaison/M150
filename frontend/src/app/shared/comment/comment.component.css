@@ -1,3 +1,10 @@
 .comment {
   margin-bottom: 15px;
 }
+
+.delete-icon {
+  line-height: 0 !important;
+  height: 30px !important;
+  width: 30px !important;
+  margin-right: 6px;
+}

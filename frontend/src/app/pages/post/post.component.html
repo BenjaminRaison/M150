@@ -6,6 +6,6 @@
 <div class="container comments" *ngIf="(comments|async)">
   <h2>Comments</h2>
   <div *ngFor="let comment of comments | async" class="comment">
-    <app-comment [comment]="comment"></app-comment>
+    <app-comment [comment]="comment" (deleted)="loadComments()"></app-comment>
   </div>
 </div>

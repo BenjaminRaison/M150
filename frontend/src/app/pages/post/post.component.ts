@@ -21,13 +21,19 @@ export class PostComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     if (id && !isNaN(Number(id))) {
       this.postService.getPostById(Number(id)).subscribe(
-        value => this.post = value,
+        value => {
+          this.post = value;
+          this.loadComments();
+        },
         () => this.router.navigateByUrl('/home')
       );
-      this.comments = this.commentService.getCommentsByPost(Number(id));
 
     } else {
       this.router.navigateByUrl('/home');
     }
+  }
+
+  loadComments() {
+    this.comments = this.commentService.getCommentsByPost(this.post.id);
   }
 }

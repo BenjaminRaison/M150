@@ -24,11 +24,11 @@ public class Comment {
     @ManyToOne
     @NotNull
     private User user;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(nullable = true)
     @JsonIgnore // StackOverflow otherwise
     public Comment parent;
-    @OneToMany(mappedBy = "parent")
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
     public List<Comment> children;
     @NotEmpty
     @Size(max = 1024)
