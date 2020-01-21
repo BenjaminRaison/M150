@@ -1,4 +1,4 @@
-package eu.benjaminraison.bzz.m183.data;
+package eu.benjaminraison.bzz.m150.data;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

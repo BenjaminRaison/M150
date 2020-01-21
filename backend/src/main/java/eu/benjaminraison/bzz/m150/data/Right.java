@@ -1,4 +1,4 @@
-package eu.benjaminraison.bzz.m183.data;
+package eu.benjaminraison.bzz.m150.data;
 
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;

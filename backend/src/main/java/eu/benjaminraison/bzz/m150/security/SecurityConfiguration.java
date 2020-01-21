@@ -1,4 +1,4 @@
-package eu.benjaminraison.bzz.m183.security;
+package eu.benjaminraison.bzz.m150.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -18,9 +18,9 @@ import javax.servlet.http.HttpServletResponse;
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private final M183AuthenticationProvider authenticationProvider;
+    private final M150AuthenticationProvider authenticationProvider;
 
-    public SecurityConfiguration(M183AuthenticationProvider authenticationProvider) {
+    public SecurityConfiguration(M150AuthenticationProvider authenticationProvider) {
         this.authenticationProvider = authenticationProvider;
     }
 

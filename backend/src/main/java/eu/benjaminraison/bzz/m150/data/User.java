@@ -1,4 +1,4 @@
-package eu.benjaminraison.bzz.m183.data;
+package eu.benjaminraison.bzz.m150.data;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;

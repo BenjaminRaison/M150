@@ -1,6 +1,6 @@
-package eu.benjaminraison.bzz.m183;
+package eu.benjaminraison.bzz.m150;
 
-import eu.benjaminraison.bzz.m183.data.Post;
+import eu.benjaminraison.bzz.m150.data.Post;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;

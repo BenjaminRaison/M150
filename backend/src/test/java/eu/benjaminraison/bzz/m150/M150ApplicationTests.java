@@ -1,4 +1,4 @@
-package eu.benjaminraison.bzz.m183;
+package eu.benjaminraison.bzz.m150;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-class M183ApplicationTests {
+class M150ApplicationTests {
 
     @Test
     void contextLoads() {

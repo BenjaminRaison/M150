@@ -1,8 +1,8 @@
-package eu.benjaminraison.bzz.m183.security;
+package eu.benjaminraison.bzz.m150.security;
 
 
-import eu.benjaminraison.bzz.m183.data.IUserRepository;
-import eu.benjaminraison.bzz.m183.data.User;
+import eu.benjaminraison.bzz.m150.data.IUserRepository;
+import eu.benjaminraison.bzz.m150.data.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -13,13 +13,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
-public class M183AuthenticationProvider implements AuthenticationProvider {
+public class M150AuthenticationProvider implements AuthenticationProvider {
 
     private final IUserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
 
-    public M183AuthenticationProvider(IUserRepository userRepository) {
+    public M150AuthenticationProvider(IUserRepository userRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = this.passwordEncoder();
     }

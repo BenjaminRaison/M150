@@ -1,4 +1,4 @@
-package eu.benjaminraison.bzz.m183.endpoints;
+package eu.benjaminraison.bzz.m150.endpoints;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;

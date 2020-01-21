@@ -1,7 +1,7 @@
-package eu.benjaminraison.bzz.m183.endpoints;
+package eu.benjaminraison.bzz.m150.endpoints;
 
-import eu.benjaminraison.bzz.m183.data.Comment;
-import eu.benjaminraison.bzz.m183.data.ICommentRepository;
+import eu.benjaminraison.bzz.m150.data.Comment;
+import eu.benjaminraison.bzz.m150.data.ICommentRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
